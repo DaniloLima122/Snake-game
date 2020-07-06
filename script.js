@@ -1,7 +1,9 @@
 let canvas = document.getElementById("snake");
 let context = canvas.getContext("2d");
 let box = 32;
-let snake = [];
+let snake = ["",""];
+
+let score = 0;
 
 snake[0] = {
 
@@ -9,6 +11,7 @@ snake[0] = {
     y: 8 * box
 }
 
+let jogo = "";
 let direcao = "right";
 let food = {
 
@@ -18,7 +21,7 @@ let food = {
 
 function criarBG() {
 
-    context.fillStyle = "lightgreen";
+    context.fillStyle = "#4cb354";
     context.fillRect(0, 0, 16 * box, 16 * box);
 }
 
@@ -32,16 +35,41 @@ function criarCobrinha() {
 
 function desenharComida() {
 
-    context.fillStyle = "red";
-    context.fillRect(food.x, food.y, box, box);
+    let imgComida = new Image();
+
+    imgComida.src = "apple.png";
+
+    context.drawImage(imgComida,food.x, food.y);
 
 }
 
+function preparaComeço(){
+
+  
+    document.getElementById("menuStart").classList.add("começar")
+    setTimeout(function(){
+        jogo = setInterval(iniciarJogo, 100);
+    },80);
+}
+
+
+document.getElementById("comecar").addEventListener("click",function(){
+    
+    preparaComeço();
+});
+
+document.getElementById("playnovamente").addEventListener("click",function(){
+
+    score=0;
+    document.getElementById("fim_de_jogo").style.display = "none";
+    document.getElementById("fim_de_jogo").style.opacity = 0;
+    preparaComeço()
+})
 
 document.addEventListener("keydown", update);
 
 function update(event) {
-
+    
     if (event.keyCode == 37 && direcao != "right") direcao = "left";
     if (event.keyCode == 38 && direcao != "down") direcao = "up";
     if (event.keyCode == 39 && direcao != "left") direcao = "right";
@@ -49,19 +77,24 @@ function update(event) {
 }
 
 function iniciarJogo() {
+    
 
     if (snake[0].x > 15 * box && direcao == "right") snake[0].x = 0;
     if (snake[0].x < 0 * box && direcao == "left") snake[0].x = 16 * box;
-
+    
     if (snake[0].y > 15 * box && direcao == "down") snake[0].y = 0;
     if (snake[0].y < 0 && direcao == "up") snake[0].y = 16 * box;
 
     for (let i = 1; i < snake.length; i++) {
 
         if(snake[0].x == snake[i].x && snake[0].y == snake[i].y){
-
-            clearInterval(jogo);
-            alert("Game over :(")
+            
+            clearInterval(jogo);    
+            document.getElementById("fim_de_jogo").style.display = "flex";
+            document.getElementById("fim_de_jogo").style.opacity = 1;
+            document.getElementById("score").innerText = "Pontuação: " + score;
+            console.log(snake.splice(2,snake.length - 2));
+            
         }
     }
 
@@ -86,6 +119,8 @@ function iniciarJogo() {
 
         food.x = Math.floor(Math.random() * 15 * + 1) * box;
         food.y = Math.floor(Math.random() * 15 * + 1) * box;
+
+        score +=1;
     }
 
 
@@ -99,4 +134,4 @@ function iniciarJogo() {
 }
 
 
-let jogo = setInterval(iniciarJogo, 100);
+

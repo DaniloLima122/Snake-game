@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,28 @@
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
 </head>
+
 <body>
 
-    <h1>Snake Game</h1>
-    <canvas id="snake" width="512" height="512"></canvas>
-    
+    <div>
+        <section id="menuStart">
+            <h1>Snake Game</h1>
+            <button id="comecar">Start</button>
+        </section>
+        
+        <canvas id="snake" width="512" height="512"></canvas>
+
+        <section id="fim_de_jogo">
+
+            <h1>GAME OVER</h1>
+
+            <p id="score">Pontuação: 0</p>
+
+            <button id="playnovamente">Jogar novamente</button>
+
+        </section>
+    </div>
+
 </body>
+
 </html>

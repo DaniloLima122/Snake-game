@@ -1,4 +1,111 @@
 body{
     display: flex;
     justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background: green;
+
+}
+
+div{
+    margin: 5% auto;
+    position: relative;
+}
+
+#menuStart,#fim_de_jogo{
+
+    border: 3px solid #4cb354;
+}   
+#menuStart{
+    background:#eee;
+    position: absolute;
+    top: 0;
+    height: 512px;
+    width: 512px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+#fim_de_jogo{
+    display: none;
+    opacity: 0;
+    background:#eee;
+    position: absolute;
+    top: 0;
+    height: 512px;
+    width: 512px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#fim_de_jogo h1{
+
+    color: green;
+    text-transform: uppercase;
+    font-size: 40px;
+    transform: rotateX(20deg);
+}
+
+#fim_de_jogo p{
+    margin-bottom: 60px;
+    color: #4cb354;
+}
+
+#menuStart h1{
+
+    color: green;
+    text-transform: uppercase;
+    font-size: 40px;
+    transform: rotateX(20deg);
+}
+
+button{
+    width: 100px;
+    height: 30px;
+    background: #4cb354;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0px 5px 0px #aaa;
+    transition: .3s;
+    outline: none;
+    transform: rotateX(10deg);
+}
+
+#fim_de_jogo button{
+    width: 150px;
+}
+
+
+button:active{
+    
+    box-shadow: 0 0 0;
+    transform: translateY(5px);
+}
+
+.começar{
+
+    animation: animcaoComecar .5s forwards;
+}
+
+.recomeçar{
+
+    animation: animcaoRecomecar .5s forwards;
+}
+
+@keyframes animcaoComecar{
+
+    0%{opacity: 1;transform: scale(1);}
+    100%{opacity: 0;transform: scale(.8);display: block;}
+}
+
+
+@keyframes animcaoRecomecar{
+
+    0%{opacity: 0;transform: scale(0);display: block;}
+    100%{opacity: 1;transform: scale(1);display: block;}
 }
