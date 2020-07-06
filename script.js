@@ -10,57 +10,70 @@ snake[0] = {
 }
 
 let direcao = "right";
+let food = {
 
-
-function criarCobrinha(){
-    for(i=0; i< snake.length;i++){
-
-        context.fillStyle = "green";
-        context.fillRect(snake[i].x,snake[i].y,box,box);
-    }
-}
-
-document.addEventListener("keydown", update);
-
-function update(event){
-
-    if(event.keyCode == 37 && direcao != "right") direcao = "left";
-    if(event.keyCode == 38 && direcao != "down") direcao = "up";
-    if(event.keyCode == 39 && direcao != "left") direcao = "right";
-    if(event.keyCode == 40 && direcao != "up") direcao = "down";
+    x: Math.floor(Math.random() * 15 * + 1) * box,
+    y: Math.floor(Math.random() * 15 * + 1) * box,
 }
 
 function criarBG() {
 
     context.fillStyle = "lightgreen";
     context.fillRect(0, 0, 16 * box, 16 * box);
-}    
+}
 
-function iniciarJogo(){
+function criarCobrinha() {
+    for (i = 0; i < snake.length; i++) {
 
-    if(snake[0].x > 15 * box && direcao == "right") snake[0].x = 0;
-    if(snake[0].x < 0 * box && direcao == "left") snake[0].x = 16 * box;
+        context.fillStyle = "green";
+        context.fillRect(snake[i].x, snake[i].y, box, box);
+    }
+}
 
-    if(snake[0].y > 15 * box && direcao == "down") snake[0].y = 0;
-    if(snake[0].y < 0 && direcao == "up") snake[0].y = 16 * box;
+function desenharComida() {
+
+    context.fillStyle = "red";
+    context.fillRect(food.x, food.y, box, box);
+
+}
+
+
+document.addEventListener("keydown", update);
+
+function update(event) {
+
+    if (event.keyCode == 37 && direcao != "right") direcao = "left";
+    if (event.keyCode == 38 && direcao != "down") direcao = "up";
+    if (event.keyCode == 39 && direcao != "left") direcao = "right";
+    if (event.keyCode == 40 && direcao != "up") direcao = "down";
+}
+
+function iniciarJogo() {
+
+    if (snake[0].x > 15 * box && direcao == "right") snake[0].x = 0;
+    if (snake[0].x < 0 * box && direcao == "left") snake[0].x = 16 * box;
+
+    if (snake[0].y > 15 * box && direcao == "down") snake[0].y = 0;
+    if (snake[0].y < 0 && direcao == "up") snake[0].y = 16 * box;
 
     criarBG();
     criarCobrinha();
+    desenharComida();
 
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
-    
-    if(direcao == "right") snakeX+= box;
-    if(direcao == "left") snakeX-= box;
-    
-    if(direcao == "up") snakeY-= box;
-    if(direcao == "down") snakeY+= box;
+
+    if (direcao == "right") snakeX += box;
+    if (direcao == "left") snakeX -= box;
+
+    if (direcao == "up") snakeY -= box;
+    if (direcao == "down") snakeY += box;
 
     snake.pop();
 
     let newhead = {
 
-        x:snakeX,
+        x: snakeX,
         y: snakeY
     }
 
@@ -68,4 +81,4 @@ function iniciarJogo(){
 }
 
 
-let jogo = setInterval(iniciarJogo,100);
+let jogo = setInterval(iniciarJogo, 100);
