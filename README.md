@@ -13,7 +13,7 @@
 Como rodar o projeto na sua máquina:
 
 
-1º - Baixe o projeto direto pelo link: https://github.com/DaniloLima122/Snake-game.git
+1º - Baixe o projeto direto pelo link clicando no botão verde escrito "Code" nessa página.
 
 ou instale o Git e digite o seguinte no seu terminal:
 
